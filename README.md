@@ -14,13 +14,13 @@
 1. [API](app/documentacion-api.md)
 
 ## Contexto
----
+
 **Zindi** es una plataforma africana de competencias en ciencia de datos que reúne a una comunidad de científicos de datos, ingenieros, académicos, empresas, ONG, gobiernos e instituciones para abordar los desafíos más apremiantes del continente mediante el uso de inteligencia artificial y aprendizaje automático.
 
 El **Desafío de Detección de Malaria de Lacuna** es una competencia organizada por Zindi que busca desarrollar modelos de visión por computadora para identificar parásitos y células sanguíneas en imágenes microscópicas de pacientes con malaria. La malaria es una de las enfermedades infecciosas más mortales del mundo, responsable de cientos de miles de muertes anualmente, especialmente en África, afectando predominantemente a niños menores de cinco años y mujeres embarazadas.
 
 ## Objetivo del Proyecto
----
+
 El objetivo principal es crear un modelo que pueda categorizar con precisión parásitos y células sanguíneas en imágenes microscópicas, facilitando un diagnóstico rápido y preciso de la malaria en entornos con recursos limitados.
 
 ## Descripción General del Conjunto de Datos
@@ -36,7 +36,6 @@ El **frotis de sangre** es un procedimiento diagnóstico utilizado en medicina p
 Este proyecto representa una oportunidad para contribuir al avance de soluciones tecnológicas en la lucha contra la malaria, mejorando la precisión y rapidez en su detección.
 
 ## Enlaces Relevantes
----
 
 - [Conjunto de Datos para la Detección de Malaria de Lacuna en Kaggle](https://www.kaggle.com/datasets/rajsahu2004/lacuna-malaria-detection-dataset)
 - [Desafío de Detección de Malaria de Lacuna en Zindi](https://zindi.africa/competitions/lacuna-malaria-detection-challenge)
