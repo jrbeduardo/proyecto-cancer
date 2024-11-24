@@ -28,6 +28,8 @@ El objetivo principal es crear un modelo que pueda categorizar con precisión pa
 
 El **frotis de sangre** es un procedimiento diagnóstico utilizado en medicina para analizar las células presentes en la sangre. Consiste en extender una gota de sangre sobre un portaobjetos de vidrio, creando una capa delgada que se tiñe y se examina bajo un microscopio. Este análisis permite observar la forma, tamaño y características de los glóbulos rojos, glóbulos blancos y plaquetas, siendo una herramienta clave para diagnosticar diversas enfermedades.
 
+![Frotis dataset](images/dataset-cover.jpg) 
+
 - **Imágenes**: Frotis de sangre teñidos capturados mediante microscopía, mostrando células infectadas y no infectadas por el parásito de la malaria.
 - **Etiquetas**: Cada imagen está etiquetada para indicar la presencia o ausencia de infección por malaria.
 - **Formato**: Las imágenes están en formato JPEG, facilitando su manejo y procesamiento.
