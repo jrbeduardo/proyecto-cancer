@@ -1,5 +1,12 @@
 # Memoria Técnica
 
+## Portada
+- **Nombre del Proyecto**: Clasificador de Malaria
+- **Fecha**: 21 de noviembre de 2024.
+- **Integrantes**:  
+  - Francisco Perez Carbajal
+  - Jose Eduardo Rodriguez Barrios
+
 ## Índice
 - [Portada](#portada)
 - [Alcance del proyecto](#alcance-del-proyecto)
@@ -13,10 +20,6 @@
 - [Conclusiones generales](#conclusiones-generales)
 - [Anexos](#anexos)
 - [Glosario](#glosario)
-
-## Portada
-- **Nombre del Proyecto**: Clasificador de Malaria
-- **Fecha**: 21 de noviembre de 2024.
 
 ## Alcance del proyecto
 
@@ -179,10 +182,7 @@ El modelo no muestra signos claros de sobreajuste, ya que las métricas de valid
 
 ## Pruebas sobre el modelo
 
-
-# Resultados del Modelo en las Pruebas
-
-## **Matriz de Confusión**
+### **Matriz de Confusión**
 
 ![Matriz de confusión](../images/matrix.png)
 
