@@ -7,6 +7,8 @@
   - Francisco Perez Carbajal
   - Jose Eduardo Rodriguez Barrios
 
+![Mosquito](../images/descarga.jpeg)
+
 ## Índice
 - [Portada](#portada)
 - [Alcance del proyecto](#alcance-del-proyecto)
@@ -191,11 +193,11 @@ El modelo no muestra signos claros de sobreajuste, ya que las métricas de valid
 ### **1. Precisión (Precision)**
 De todas las predicciones como "Malaria", el 98.9% fueron correctas. Una alta precisión significa que el modelo tiene una baja tasa de falsos positivos
 
-## **2. Recall (Sensibilidad)**
+### **2. Recall (Sensibilidad)**
 
 El modelo identificó correctamente el 99.8% de los casos de malaria. Esto es crucial en diagnósticos médicos, ya que minimiza los casos de malaria no detectados.
 
-## **3. F1-Score**
+### **3. F1-Score**
 
 Un F1-Score de 0.994 indica un balance excelente entre precisión y recall, lo que demuestra que el modelo es confiable y robusto para detectar malaria.
 
