@@ -2,7 +2,6 @@
 
 ## Índice
 - [Portada](#portada)
-- [Glosario](#glosario)
 - [Alcance del proyecto](#alcance-del-proyecto)
   - [Objetivo](#objetivo)
   - [Introducción](#introducción)
@@ -13,79 +12,11 @@
   - [Conclusiones](#conclusiones)
 - [Conclusiones generales](#conclusiones-generales)
 - [Anexos](#anexos)
+- [Glosario](#glosario)
 
 ## Portada
 - **Nombre del Proyecto**: Clasificador de Malaria
 - **Fecha**: 21 de noviembre de 2024.
-
-
-## Glosario
-
-Este glosario proporciona una breve descripción de los términos biológicos relacionados con la detección de malaria utilizados en el proyecto.
-
----
-
-### **1. Malaria**
-- **Definición:** Enfermedad infecciosa causada por parásitos del género *Plasmodium*, transmitida principalmente por la picadura de mosquitos hembra del género *Anopheles*.
-- **Importancia:** Es una de las enfermedades infecciosas más prevalentes, afectando millones de personas cada año.
-
----
-
-### **2. Trofozoíto**
-- **Definición:** Etapa activa de alimentación y crecimiento del parásito *Plasmodium* dentro de los glóbulos rojos.
-- **Relevancia:** La presencia de trofozoítos en una muestra de sangre es un indicador clave de infección por malaria.
-
----
-
-### **3. Glóbulos Rojos (Eritrocitos)**
-- **Definición:** Células sanguíneas responsables de transportar oxígeno a través del cuerpo.
-- **Relación con la malaria:** El parásito *Plasmodium* invade y se desarrolla dentro de los glóbulos rojos.
-
----
-
-### **4. Glóbulos Blancos (Leucocitos)**
-- **Definición:** Células del sistema inmunitario que protegen al cuerpo contra infecciones.
-- **Relevancia:** Aunque no están infectados por el parásito de la malaria, pueden aparecer en las imágenes de microscopio y deben diferenciarse de los trofozoítos.
-
----
-
-### **5. Esquizonte**
-- **Definición:** Etapa de multiplicación del parásito *Plasmodium* dentro de los glóbulos rojos.
-- **Importancia:** La detección de esquizontes puede ayudar a determinar la gravedad de la infección.
-
----
-
-### **6. Gametocito**
-- **Definición:** Etapa del parásito *Plasmodium* que es transmitida al mosquito durante la picadura.
-- **Relevancia:** Aunque no es directamente responsable de los síntomas, su presencia indica que el parásito puede propagarse.
-
----
-
-### **7. Plasmodium**
-- **Definición:** Género de parásitos protozoarios que causan la malaria. Las especies más comunes son:
-  - *Plasmodium falciparum*: Responsable de la mayoría de los casos graves de malaria.
-  - *Plasmodium vivax*: Causa una forma recurrente de malaria.
-  - *Plasmodium malariae*: Asociado con infecciones crónicas.
-  - *Plasmodium ovale*: Rara, pero también causa recurrencias.
-  - *Plasmodium knowlesi*: Zoonótica, transmitida principalmente de macacos.
-
----
-
-### **8. Frotis Sanguíneo**
-- **Definición:** Técnica de laboratorio en la que una muestra de sangre se extiende sobre un portaobjetos y se tiñe para examinarla bajo un microscopio.
-- **Uso en la malaria:** Es el método estándar para detectar y cuantificar parásitos de la malaria.
-
----
-
-### **9. Tinción de Giemsa**
-- **Definición:** Método de tinción utilizado para resaltar los parásitos en los glóbulos rojos durante un examen microscópico.
-- **Importancia:** Ayuda a diferenciar entre las etapas del parásito *Plasmodium* y otras estructuras celulares.
-
----
-
-### **10. Parasitología**
-- **Definición:** Rama de la biología que estudia los parásitos y sus interacciones con los hospedadores.
-- **Relevancia:** Es la base científica para el diagnóstico y tratamiento de la malaria.
 
 ## Alcance del proyecto
 
@@ -290,3 +221,52 @@ Este proyecto demuestra cómo la inteligencia artificial puede transformar la fo
 - [Repositorio Github](https://github.com/jrbeduardo/proyecto-malaria)
 - [Conjunto de Datos para la Detección de Malaria de Lacuna en Kaggle](https://www.kaggle.com/datasets/rajsahu2004/lacuna-malaria-detection-dataset)
 - [Desafío de Detección de Malaria de Lacuna en Zindi](https://zindi.africa/competitions/lacuna-malaria-detection-challenge)
+
+## Glosario
+
+Este glosario proporciona una breve descripción de los términos biológicos relacionados con la detección de malaria utilizados en el proyecto.
+
+### **1. Malaria**
+- **Definición:** Enfermedad infecciosa causada por parásitos del género *Plasmodium*, transmitida principalmente por la picadura de mosquitos hembra del género *Anopheles*.
+- **Importancia:** Es una de las enfermedades infecciosas más prevalentes, afectando millones de personas cada año.
+
+### **2. Trofozoíto**
+- **Definición:** Etapa activa de alimentación y crecimiento del parásito *Plasmodium* dentro de los glóbulos rojos.
+- **Relevancia:** La presencia de trofozoítos en una muestra de sangre es un indicador clave de infección por malaria.
+
+### **3. Glóbulos Rojos (Eritrocitos)**
+- **Definición:** Células sanguíneas responsables de transportar oxígeno a través del cuerpo.
+- **Relación con la malaria:** El parásito *Plasmodium* invade y se desarrolla dentro de los glóbulos rojos.
+
+### **4. Glóbulos Blancos (Leucocitos)**
+- **Definición:** Células del sistema inmunitario que protegen al cuerpo contra infecciones.
+- **Relevancia:** Aunque no están infectados por el parásito de la malaria, pueden aparecer en las imágenes de microscopio y deben diferenciarse de los trofozoítos.
+
+### **5. Esquizonte**
+- **Definición:** Etapa de multiplicación del parásito *Plasmodium* dentro de los glóbulos rojos.
+- **Importancia:** La detección de esquizontes puede ayudar a determinar la gravedad de la infección.
+
+### **6. Gametocito**
+- **Definición:** Etapa del parásito *Plasmodium* que es transmitida al mosquito durante la picadura.
+- **Relevancia:** Aunque no es directamente responsable de los síntomas, su presencia indica que el parásito puede propagarse.
+
+### **7. Plasmodium**
+- **Definición:** Género de parásitos protozoarios que causan la malaria. Las especies más comunes son:
+  - *Plasmodium falciparum*: Responsable de la mayoría de los casos graves de malaria.
+  - *Plasmodium vivax*: Causa una forma recurrente de malaria.
+  - *Plasmodium malariae*: Asociado con infecciones crónicas.
+  - *Plasmodium ovale*: Rara, pero también causa recurrencias.
+  - *Plasmodium knowlesi*: Zoonótica, transmitida principalmente de macacos.
+
+### **8. Frotis Sanguíneo**
+- **Definición:** Técnica de laboratorio en la que una muestra de sangre se extiende sobre un portaobjetos y se tiñe para examinarla bajo un microscopio.
+- **Uso en la malaria:** Es el método estándar para detectar y cuantificar parásitos de la malaria.
+
+### **9. Tinción de Giemsa**
+- **Definición:** Método de tinción utilizado para resaltar los parásitos en los glóbulos rojos durante un examen microscópico.
+- **Importancia:** Ayuda a diferenciar entre las etapas del parásito *Plasmodium* y otras estructuras celulares.
+
+### **10. Parasitología**
+- **Definición:** Rama de la biología que estudia los parásitos y sus interacciones con los hospedadores.
+- **Relevancia:** Es la base científica para el diagnóstico y tratamiento de la malaria.
+
