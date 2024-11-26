@@ -1,0 +1,14 @@
+#image-preview {
+    max-width: 300px;
+    max-height: 300px;
+    display: block;
+    margin: 20px auto;
+    border: 2px solid #ddd;
+}
+.result {
+    display: none;
+}
+#loader {
+    display: none;
+    margin: 20px auto;
+}
