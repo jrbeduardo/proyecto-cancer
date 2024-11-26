@@ -92,8 +92,7 @@ curl -X POST -H "Content-Type: application/json" -d '{"img_base64": "base64_stri
 ```json
 {
   "confidence": 0.98,
-  "malaria": true,
-  "predicted_class": 1
+  "predicted_class": "Sí malaria"
 }
 ```
 
