@@ -4,6 +4,7 @@
 [![TensorFlow Version](https://img.shields.io/badge/TensorFlow-2.17-orange.svg)](https://www.tensorflow.org/)
 
 [Video Demo](https://drive.google.com/file/d/1mvCmi2XkMpkig0v9X3u08-PVtwchd3Tc/view?usp=sharing)
+
 [Frontend en Github pages](https://jrbeduardo.github.io/proyecto-malaria/)
 
 ## Integrantes:  
