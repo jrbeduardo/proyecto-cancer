@@ -30,11 +30,8 @@ class MalariaClassifier:
         :param img_array: Imagen preprocesada como un array de NumPy.
         :return: Diccionario con el resultado de la predicción.
         """
-        predictions = self.model.predict(img_array).tolist()[0]
-        confidence = max(predictions)
-        predicted_class = np.argmax(predictions)
+        prediction = self.model.predict(img_array).tolist()[0][0]
         return {
-            "confidence": round(confidence, 2),
-            "malaria": confidence,
-            "predicted_class": "Sí malaria" if predicted_class == 1 else "No malaria"
+            "confidence": round(prediction, 2),
+            "predicted_class": "Sí malaria" if prediction > 0.5 else "No malaria"
         }
