@@ -1,25 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clasificador de Cancer</title>
+    <title>Clasificador de Cáncer de Mama</title>
     <!-- Incluir Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        /* Fondo con degradado rosa */
         body {
-            background: linear-gradient(to bottom, #e3f2fd, #90caf9);
-            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #ffebee, #f8bbd0);
+            font-family: 'Arial', sans-serif;
+            text-align: center;
         }
         .container {
             background-color: white;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
+            padding: 30px;
             margin-top: 50px;
+            max-width: 600px;
         }
         h1 {
-            color: #1976d2;
+            color: #d81b60;
+            font-weight: bold;
         }
         #loader {
             display: none;
@@ -27,28 +31,50 @@
         #result {
             display: none;
         }
+        #image-preview {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 15px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        #gradcam-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 15px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        .btn-primary {
+            background-color: #d81b60;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #c2185b;
+        }
         ol {
             text-align: left;
+            padding-left: 20px;
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <h1 class="text-center">Clasificador de Cancer de Mama</h1>
-    <p class="text-center">
-        Utiliza esta herramienta basada en inteligencia artificial para detectar cancer de mama a partir de imágenes de muestras microscópicas.
+    <h1 class="text-center">Clasificador de Cáncer de Mama</h1>
+    <p>
+        Utiliza esta herramienta basada en inteligencia artificial para detectar cáncer de mama a partir de imágenes de muestras microscópicas.
     </p>
     <hr>
-    <h5>Pasos para usar el clasificador:</h5>
+    <h5>📌 Pasos para usar el clasificador:</h5>
     <ol>
-        <li>Haz clic en el botón <strong>"Seleccionar archivo"</strong> y sube una imagen de la muestra.</li>
+        <li>Haz clic en <strong>"Seleccionar archivo"</strong> y sube una imagen de la muestra.</li>
         <li>Espera a que la imagen se cargue y previsualízala.</li>
-        <li>Presiona el botón <strong>"Hacer clasificación"</strong> para obtener el resultado.</li>
+        <li>Presiona <strong>"Hacer clasificación"</strong> para obtener el resultado.</li>
     </ol>
     
     <!-- Input para cargar la imagen -->
     <div class="mb-3 text-center">
-        <label for="image-input" class="form-label">Seleccionar archivo</label>
+        <label for="image-input" class="form-label"><strong>Seleccionar archivo</strong></label>
         <input type="file" class="form-control" id="image-input" accept="image/*" />
     </div>
 
@@ -57,59 +83,33 @@
         <img id="image-preview" src="#" alt="Tu imagen aquí" style="display:none;" class="img-thumbnail" />
     </div>
 
-    <!-- Loader (spinner) -->
-    <div id="loader" class="spinner-border text-primary" role="status">
-        <span class="visually-hidden">Procesando...</span>
-    </div>
+    
 
     <!-- Botón para hacer la predicción -->
     <div class="text-center">
-        <button id="predict-btn" class="btn btn-success mt-3" style="display:none;">Hacer clasificación</button>
+        <button id="predict-btn" class="btn btn-primary mt-3" style="display:none;">🔍 Hacer clasificación</button>
+    </div>
+
+
+    <!-- Loader (spinner) -->
+    <div id="loader" class="spinner-border text-danger mt-3" role="status">
+        <span class="visually-hidden">Procesando...</span>
+    </div>
+    
+    <!-- Imagen de Grad-CAM -->
+    <div id="gradcam-container mt-4" style="display: none; text-align: center;">
+        <h3>📍 Región Destacada por el Modelo (Grad-CAM)</h3>
+        <img id="gradcam-image" alt="Imagen Grad-CAM" />
     </div>
 
     <!-- Resultado de la predicción -->
-    <div id="result" class="alert alert-info mt-4 text-center result">Resultado: <span id="prediction-result"></span></div>
-    <!-- Imagen de Grad-CAM -->
-    <div id="gradcam-container" style="display: none; text-align: center;">
-        <h3>Región Destacada por el Modelo (Grad-CAM)</h3>
-        <img id="gradcam-image" alt="Imagen Grad-CAM" style="max-width: 100%; height: auto;"/>
+    <div id="result" class="alert alert-warning text-center result">
+        <h4>🔬 Resultado: <span id="prediction-result"></span></h4>
     </div>
 </div>
 
 <script src="./model.js"></script>
 <!-- Incluir Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-    // Script para previsualizar imagen y mostrar elementos
-    const imageInput = document.getElementById('image-input');
-    const imagePreview = document.getElementById('image-preview');
-    const predictBtn = document.getElementById('predict-btn');
-    const loader = document.getElementById('loader');
-    const result = document.getElementById('result');
-
-    imageInput.addEventListener('change', function (e) {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function (event) {
-                imagePreview.src = event.target.result;
-                imagePreview.style.display = 'block';
-                predictBtn.style.display = 'block';
-            };
-            reader.readAsDataURL(file);
-        }
-    });
-
-    predictBtn.addEventListener('click', function () {
-        loader.style.display = 'block';
-        result.style.display = 'none';
-        // Simulación de proceso
-        setTimeout(() => {
-            loader.style.display = 'none';
-            result.style.display = 'block';
-            document.getElementById('prediction-result').textContent = 'Positivo/Negativo (Simulado)';
-        }, 2000);
-    });
-</script>
 </body>
 </html>
