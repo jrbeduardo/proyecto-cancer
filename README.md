@@ -7,7 +7,7 @@
 [Frontend en Github pages](https://jrbeduardo.github.io/proyecto-cancer/)
 
 
-## Entegrables:
+## Documentación:
 
 1. [Memoria Técnica](dev_model/MEMORIA-TECNICA.md)
 1. [Documentación API](app/documentacion-api.md)
@@ -38,7 +38,7 @@ El conjunto de datos **BreaKHis** consiste en imágenes histopatológicas de tej
 
 ![Ejemplo de imágenes histológicas](images/Grad-CAM.png)
 
-Este conjunto de datos permite entrenar modelos de **visión por computadora** para mejorar la precisión del diagnóstico automatizado de cáncer de mama.
+Este conjunto de datos permite entrenar redes neuronales para mejorar la precisión del diagnóstico automatizado de cáncer de mama.
 
 ## Implementación del Modelo
 
