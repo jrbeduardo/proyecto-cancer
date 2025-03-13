@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("loader").style.display = "inline-block";
         document.getElementById("result").style.display = "none";
 
-        fetch("https://f0af-35-221-129-235.ngrok-free.app/predict/", {
+        fetch("https://fd7e-35-198-239-245.ngrok-free.app", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
