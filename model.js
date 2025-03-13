@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("loader").style.display = "inline-block";
         document.getElementById("result").style.display = "none";
 
-        fetch("http://localhost:8001/clasification_image", {
+        fetch("https://f0af-35-221-129-235.ngrok-free.app/predict/", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(data => {
             // Añadir un retraso de 2 segundos antes de mostrar los resultados
             setTimeout(() => {
-                document.getElementById("prediction-result").textContent = `${data.predicted_class} (Confianza: ${data.confidence.toFixed(2)})`;
+                document.getElementById("prediction-result").textContent = `${data.prediccion} (Confianza: ${data.confianza})`;
                 document.getElementById("result").style.display = "block";
             }, 2000); // 2000 milisegundos = 2 segundos
         })
