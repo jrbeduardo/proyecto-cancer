@@ -8,7 +8,7 @@
 Este repositorio contiene dos notebooks clave que abordan el análisis del cáncer de mama desde diferentes perspectivas:
 
 ### 📝 `mexico_cancer_mama.ipynb`
-Este notebook se enfoca en el análisis estadístico del **cáncer de mama en México**. Se exploran tendencias y datos epidemiológicos relevantes, proporcionando información sobre:
+Este notebook se enfoca en el análisis estadístico del **cáncer de mama en México**. Se exploran tendencias y datos relevantes, proporcionando información sobre:
 - Tasas de incidencia y mortalidad.
 - Distribución por edad y estado.
 
@@ -24,4 +24,4 @@ Este notebook está dedicado al desarrollo de modelos de **aprendizaje profundo 
 
 Este enfoque permite la automatización de la detección de cáncer de mama, ofreciendo una herramienta potencial para el diagnóstico asistido por computadora.
 
-🚀 **Ambos notebooks complementan el estudio del cáncer de mama desde un enfoque estadístico y computacional, proporcionando información valiosa para el análisis y la toma de decisiones clínicas.**
+🚀 **Ambos notebooks complementan el estudio del cáncer de mama desde un enfoque estadístico e inteligencia artificial, proporcionando información valiosa para el análisis y la toma de decisiones clínicas.**
