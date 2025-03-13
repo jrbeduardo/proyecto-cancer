@@ -1,16 +1,11 @@
-# ![Logo Facultad de Ciencias](images/logoFC85.png) Proyecto - Detección de Malaria de Lacuna
+#  Proyecto - Detección de Cancer de Mama
 
 [![Python Version](https://img.shields.io/badge/python-3.10-blue.svg)](https://www.python.org/downloads/release/python-3100/)
 [![TensorFlow Version](https://img.shields.io/badge/TensorFlow-2.17-orange.svg)](https://www.tensorflow.org/)
 
-[Video Demo](https://drive.google.com/file/d/1mvCmi2XkMpkig0v9X3u08-PVtwchd3Tc/view?usp=sharing)
 
-[Frontend en Github pages](https://jrbeduardo.github.io/proyecto-malaria/)
+[Frontend en Github pages](https://jrbeduardo.github.io/proyecto-cancer/)
 
-## Integrantes:  
-
-- Francisco Perez Carbajal
-- Jose Eduardo Rodriguez Barrios
 
 ## Entegrables:
 
@@ -19,29 +14,41 @@
 
 ## Contexto
 
-**Zindi** es una plataforma africana de competencias en ciencia de datos que reúne a una comunidad de científicos de datos, ingenieros, académicos, empresas, ONG, gobiernos e instituciones para abordar los desafíos más apremiantes del continente mediante el uso de inteligencia artificial y aprendizaje automático.
+El cáncer de mama es una de las principales causas de muerte en mujeres a nivel mundial. Su diagnóstico temprano es crucial para mejorar las tasas de supervivencia, permitiendo tratamientos menos invasivos y con mayor eficacia. La identificación de células malignas en imágenes histopatológicas es una tarea compleja que requiere experiencia especializada.
 
-El **Desafío de Detección de Malaria de Lacuna** es una competencia organizada por Zindi que busca desarrollar modelos de visión por computadora para identificar parásitos y células sanguíneas en imágenes microscópicas de pacientes con malaria. La malaria es una de las enfermedades infecciosas más mortales del mundo, responsable de cientos de miles de muertes anualmente, especialmente en África, afectando predominantemente a niños menores de cinco años y mujeres embarazadas.
+En este proyecto, se implementa un modelo de **red neuronal convolucional (CNN)** para la clasificación automática de imágenes histopatológicas de cáncer de mama. Se utiliza la base de datos **BreaKHis**, que contiene imágenes de tejido mamario con diferentes niveles de aumento (40X, 100X, 200X y 400X). Con el uso de aprendizaje profundo, se busca mejorar la precisión del diagnóstico y proporcionar herramientas de apoyo a especialistas médicos.
 
 ## Objetivo del Proyecto
 
-El objetivo principal es crear un modelo que pueda categorizar con precisión parásitos y células sanguíneas en imágenes microscópicas, facilitando un diagnóstico rápido y preciso de la malaria en entornos con recursos limitados.
+El objetivo principal es desarrollar un modelo basado en **DenseNet121** y CNN convencionales para la clasificación de imágenes histopatológicas en **tumores benignos y malignos**. Además, se busca interpretar las predicciones del modelo mediante la técnica **Grad-CAM**, resaltando las regiones más relevantes para la clasificación.
 
 ## Descripción General del Conjunto de Datos
 
+El conjunto de datos **BreaKHis** consiste en imágenes histopatológicas de tejido mamario teñidas y capturadas mediante microscopía. Se divide en dos clases principales:
 
-El **frotis de sangre** es un procedimiento diagnóstico utilizado en medicina para analizar las células presentes en la sangre. Consiste en extender una gota de sangre sobre un portaobjetos de vidrio, creando una capa delgada que se tiñe y se examina bajo un microscopio. Este análisis permite observar la forma, tamaño y características de los glóbulos rojos, glóbulos blancos y plaquetas, siendo una herramienta clave para diagnosticar diversas enfermedades.
+- **Benigno**: Tumores no invasivos, con crecimiento lento y sin riesgo de metástasis.
+- **Maligno**: Tumores cancerosos con capacidad de invadir otros tejidos y propagarse.
 
-![Frotis dataset](images/dataset-cover.jpg) 
+### 📌 **Características del Dataset**
+- **Número de imágenes**: 7,909 imágenes en total.
+- **Clases**: 2 (Benigno y Maligno).
+- **Formatos**: PNG (700x460 píxeles, RGB).
+- **Ampliaciones**: 40X, 100X, 200X, 400X.
+- **Fuente**: Base de datos **BreaKHis**, desarrollada en colaboración con el P&D Laboratory – Pathological Anatomy and Cytopathology en Paraná, Brasil.
 
-- **Imágenes**: Frotis de sangre teñidos capturados mediante microscopía, mostrando células infectadas y no infectadas por el parásito de la malaria.
-- **Etiquetas**: Cada imagen está etiquetada para indicar la presencia o ausencia de infección por malaria.
-- **Formato**: Las imágenes están en formato JPEG, facilitando su manejo y procesamiento.
-- **Tamaño**: El conjunto de datos incluye un número significativo de imágenes, proporcionando una base sólida para el entrenamiento de modelos de aprendizaje profundo.
+![Ejemplo de imágenes histológicas](images/Grad-CAM.png)
 
-Este proyecto representa una oportunidad para contribuir al avance de soluciones tecnológicas en la lucha contra la malaria, mejorando la precisión y rapidez en su detección.
+Este conjunto de datos permite entrenar modelos de **visión por computadora** para mejorar la precisión del diagnóstico automatizado de cáncer de mama.
+
+## Implementación del Modelo
+
+Se probaron dos enfoques principales:
+1. **Modelo CNN Convencional**: Red convolucional con múltiples capas para extracción de características.
+2. **Modelo basado en DenseNet121**: Uso de transferencia de aprendizaje y fusión de características intermedias para mejorar la precisión.
+
+Además, se empleó **validación cruzada** para evaluar la robustez de los modelos y se utilizó la técnica **Grad-CAM** para interpretar sus predicciones.
 
 ## Enlaces Relevantes
 
-- [Conjunto de Datos para la Detección de Malaria de Lacuna en Kaggle](https://www.kaggle.com/datasets/rajsahu2004/lacuna-malaria-detection-dataset)
-- [Desafío de Detección de Malaria de Lacuna en Zindi](https://zindi.africa/competitions/lacuna-malaria-detection-challenge)
+- [Base de Datos BreaKHis](https://web.inf.ufpr.br/vri/databases/breast-cancer-histopathological-database-breakhis/)
+- [Publicación sobre BreaKHis](https://doi.org/10.1109/IJCNN.2016.7727519)
