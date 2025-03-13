@@ -69,6 +69,11 @@
 
     <!-- Resultado de la predicción -->
     <div id="result" class="alert alert-info mt-4 text-center result">Resultado: <span id="prediction-result"></span></div>
+    <!-- Imagen de Grad-CAM -->
+    <div id="gradcam-container" style="display: none; text-align: center;">
+        <h3>Región Destacada por el Modelo (Grad-CAM)</h3>
+        <img id="gradcam-image" alt="Imagen Grad-CAM" style="max-width: 100%; height: auto;"/>
+    </div>
 </div>
 
 <script src="./model.js"></script>

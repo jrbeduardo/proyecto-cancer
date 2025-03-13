@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // Mostrar el loader
         document.getElementById("loader").style.display = "inline-block";
         document.getElementById("result").style.display = "none";
+        document.getElementById("gradcam-container").style.display = "none"; // Ocultar Grad-CAM hasta recibir la respuesta
 
         fetch("https://fd7e-35-198-239-245.ngrok-free.app/predict/", {
             method: "POST",
@@ -28,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                img_base64: base64Image
+                image_base64: base64Image  // 🔹 Clave correcta para FastAPI
             })
         })
         .then(response => {
@@ -42,7 +43,13 @@ document.addEventListener("DOMContentLoaded", function() {
             setTimeout(() => {
                 document.getElementById("prediction-result").textContent = `${data.prediccion} (Confianza: ${data.confianza})`;
                 document.getElementById("result").style.display = "block";
-            }, 2000); // 2000 milisegundos = 2 segundos
+
+                // Mostrar la imagen con Grad-CAM
+                if (data.imagen_gradcam) {
+                    document.getElementById("gradcam-image").src = `data:image/png;base64,${data.imagen_gradcam}`;
+                    document.getElementById("gradcam-container").style.display = "block";
+                }
+            }, 1000); // 2000 milisegundos = 2 segundos
         })
         .catch(error => {
             // Añadir retraso de 2 segundos en caso de error
