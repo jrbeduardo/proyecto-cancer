@@ -1,5 +1,5 @@
 # Clasificador de Cáncer de Mama con Inteligencia Artificial
-![Interfaz de la Aplicación](images/screenshot.png)
+![Interfaz de la Aplicación](images/interfaz.pngpng)
 
 ## 📌 Descripción
 Este proyecto es una aplicación web que utiliza **redes neuronales profundas (CNN y DenseNet121)** para la detección de **cáncer de mama** a partir de imágenes histopatológicas.  
