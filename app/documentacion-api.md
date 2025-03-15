@@ -1,4 +1,3 @@
-
 # Documentación General de la API
 
 ## Tabla de Contenidos
@@ -12,22 +11,18 @@
    - [Ejecución del Contenedor](#ejecución-del-contenedor)
    - [Detener y Eliminar Contenedores](#detener-y-eliminar-contenedores)
 5. [Endpoints de la API](#endpoints-de-la-api)
-   - [POST /clasification_image](#post-clasification_image)
+   - [POST /predict](#post-predict)
 6. [Manejo de Errores](#manejo-de-errores)
 
 ---
 
 ## Introducción
-Esta API permite clasificar imágenes para detectar si contienen indicios de malaria. 
-Es ideal para integrarse en aplicaciones que requieran un sistema de diagnóstico automatizado.
-
-### Fecha de Actualización
-Última actualización: 25-11-2024
+Esta API permite la clasificación de imágenes histopatológicas para detectar cáncer de mama. Utiliza modelos de aprendizaje profundo con CNN y Grad-CAM para ofrecer predicciones precisas y mapas de activación que resaltan las regiones más relevantes en la imagen analizada.
 
 ---
 
 ## Requisitos Previos
-- Docker y Docker Compose instalados.
+- Docker instalado.
 - Git instalado.
 - Python 3.10 o superior (para desarrollo).
 - Configuración básica del sistema operativo.
@@ -37,29 +32,30 @@ Es ideal para integrarse en aplicaciones que requieran un sistema de diagnóstic
 ### Clonación del Repositorio
 Clona el repositorio del proyecto:
 ```bash
-git clone https://github.com/jrbeduardo/proyecto-malaria.git
-cd proyecto-malaria
+git clone https://github.com/jrbeduardo/proyecto-cancer.git
+cd proyecto-cancer
 ```
+
 ## Carga del modelo
 
 El archivo de modelo necesario para ejecutar la API es bastante pesado y no está incluido directamente en el repositorio. Puedes descargarlo desde el siguiente enlace:
- 
-[Descargar modelo malaria_detection_model.h5](https://drive.google.com/file/d/1dDQc0MbJ7ISSx5R4_XZDaKuU0P8YSR7M/view?usp=sharing)
 
-Por favor, guarda el archivo en la ubicación indicada en la configuración del modelo (/app/malaria_detection_model.h5 si usas Docker).
- 
+[Descargar modelo cancer_detection_model.h5](https://drive.google.com/file/d/1dDQc0MbJ7ISSx5R4_XZDaKuU0P8YSR7M/view?usp=sharing)
+
+Por favor, guarda el archivo en la ubicación indicada en la configuración del modelo (`/app/cancer_detection_model.h5` si usas Docker).
+
 ## Uso de Docker
 
 ### Construcción de la Imagen
 Construye la imagen de Docker:
 ```bash
-docker build -t malaria-api .
+docker build -t cancer-api .
 ```
 
 ### Ejecución del Contenedor
 Inicia el contenedor con Docker:
 ```bash
-docker run -d -p 80:80 malaria-api
+docker run -d -p 80:80 cancer-api
 ```
 Accede a la API en `http://localhost:80/docs` para la documentación interactiva.
 
@@ -77,24 +73,34 @@ docker rm id_contenedor
 
 ## Endpoints de la API
 
-### POST /clasification_image
-**Descripción:** Clasifica una imagen para detectar malaria.
+### POST /predict
+**Descripción:** Clasifica una imagen histopatológica para detectar cáncer de mama.
 
 **Request Body:**
-- `img_base64` (string): Imagen codificada en Base64.
-
-**Ejemplo:**
-```bash
-curl -X POST -H "Content-Type: application/json" -d '{"img_base64": "base64_string"}' http://localhost:80/clasification_image
-```
-
-**Response:**
 ```json
 {
-  "confidence": 0.98,
-  "predicted_class": "Sí malaria"
+    "image_base64": "/9j/4AAQSkZJRgAB..."
 }
 ```
+
+**Ejemplo de Solicitud con cURL:**
+```bash
+curl -X POST -H "Content-Type: application/json" -d '{"image_base64": "base64_string"}' http://localhost:80/predict
+```
+
+**Ejemplo de Respuesta:**
+```json
+{
+    "prediction": "maligno",
+    "confidence": 0.95,
+    "gradcam_base64": "/9j/4AAQSkZJRgAB..."
+}
+```
+
+**Interpretación de la Respuesta:**
+- `prediction`: Indica si el tejido analizado es `benigno` o `maligno`.
+- `confidence`: Representa el nivel de certeza de la clasificación, con valores entre 0 y 1.
+- `gradcam_base64`: Contiene la imagen Grad-CAM generada por el modelo, en formato Base64, resaltando las zonas más relevantes en la decisión.
 
 ---
 

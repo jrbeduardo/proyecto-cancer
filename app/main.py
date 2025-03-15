@@ -15,15 +15,18 @@ import os
 from PIL import Image, ImageOps
 import io
 import numpy as np
+import cv2
 
 
 
-from models.malaria_classifier import MalariaClassifier  # Importa la clase del modelo
-from models.images import ImageData
+from app.models.cancer_classifier import CancerClassifier  # Importa la clase del modelo
+from models.images import ImageRequest
+from utils.imagenes import decode_base64_image, make_gradcam_heatmap, overlay_heatmap
+
 
 
 # Inicializa el clasificador
-classifier = MalariaClassifier("malaria_detection_model.h5")
+classifier = CancerClassifier("cancer_model.h5")
 
 # Inicializa API
 app = FastAPI()
@@ -38,19 +41,33 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.post("/clasification_image", tags=["Clasificador de malaria"])
-def upload_image(image_data: ImageData):
+# ===============================
+# Endpoint para recibir la imagen y devolver el resultado
+# ===============================
+@app.post("/predict/")
+async def predict(image_request: ImageRequest):
     try:
-        # Decodificar la imagen Base64
-        image_data_bytes = base64.b64decode(image_data.img_base64)
-        image = Image.open(BytesIO(image_data_bytes))
+        image = decode_base64_image(image_request.image_base64)
+        # Procesar imagen
+        imagen_procesada = classifier.preprocess_image(image_request.image_base64)
         
-        # Preprocesar la imagen
-        img_array = classifier.preprocess_image(image)
-        
-        # Realizar predicción
-        result = classifier.predict(img_array)
-        return result
+        # Hacer la predicción
+        confianza, etiqueta = CancerClassifier.predict(imagen_procesada)
+
+        # Aplicar Grad-CAM
+        last_conv_layer_name = "conv5_block16_concat"  
+        heatmap = make_gradcam_heatmap(imagen_procesada, CancerClassifier, last_conv_layer_name)
+        gradcam_result = overlay_heatmap(image, heatmap)
+
+        # Convertir imagen con Grad-CAM a Base64 para devolverla en la respuesta
+        _, buffer = cv2.imencode(".png", gradcam_result)
+        gradcam_base64 = base64.b64encode(buffer).decode("utf-8")
+
+        return {
+            "prediccion": etiqueta,
+            "confianza": f"{confianza:.4f}",
+            "imagen_gradcam": gradcam_base64
+        }
 
     except Exception as e:
-        raise HTTPException(status_code=400, detail=f"Error processing the image: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))

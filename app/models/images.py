@@ -1,7 +1,7 @@
 from pydantic import BaseModel, Field
 
-class ImageData(BaseModel):
-    img_base64: str = Field(
+class ImageRequest(BaseModel):
+    image_base64: str = Field(
         ..., 
         title="Base64 Image String", 
         description="Image encoded in Base64 format",
