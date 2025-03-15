@@ -40,7 +40,7 @@ cd proyecto-cancer
 
 El archivo de modelo necesario para ejecutar la API es bastante pesado y no está incluido directamente en el repositorio. Puedes descargarlo desde el siguiente enlace:
 
-[Descargar modelo cancer_detection_model.h5](https://drive.google.com/file/d/1dDQc0MbJ7ISSx5R4_XZDaKuU0P8YSR7M/view?usp=sharing)
+[Descargar modelo cancer_detection_model.h5](https://drive.google.com/file/d/1--dhPdZ8ePth-jcddGp8WXl3gGL0fqJV/view?usp=sharing)
 
 Por favor, guarda el archivo en la ubicación indicada en la configuración del modelo (`/app/cancer_detection_model.h5` si usas Docker).
 

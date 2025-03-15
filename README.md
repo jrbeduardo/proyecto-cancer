@@ -20,7 +20,7 @@ En este proyecto, se implementa un modelo de **red neuronal convolucional (CNN)*
 
 ## Objetivo del Proyecto
 
-El objetivo principal es desarrollar un modelo basado en **DenseNet121** y CNN convencionales para la clasificación de imágenes histopatológicas en **tumores benignos y malignos**. Además, se busca interpretar las predicciones del modelo mediante la técnica **Grad-CAM**, resaltando las regiones más relevantes para la clasificación.
+El objetivo principal es desarrollar un modelo para la clasificación de imágenes histopatológicas en **tumores benignos y malignos**. Además, se busca interpretar las predicciones del modelo mediante la técnica **Grad-CAM**, resaltando las regiones más relevantes para la clasificación.
 
 ## Descripción General del Conjunto de Datos
 
