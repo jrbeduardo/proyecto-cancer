@@ -19,9 +19,6 @@ def create_model(input_shape=(128, 128, 3)):
     layer_names = ['conv3_block12_concat', 'conv4_block24_concat', 'conv5_block16_concat']
     intermediate_outputs = [base_model.get_layer(name).output for name in layer_names]
 
-    # Create a new model that outputs intermediate layers
-    intermediate_model = Model(inputs=base_model.input, outputs=intermediate_outputs)
-
     # Define the branches for each intermediate output
     branch_outputs = []
     for output in intermediate_outputs:

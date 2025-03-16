@@ -3,6 +3,7 @@ from fastapi import FastAPI, HTTPException
 import numpy as np
 import cv2
 from PIL import Image
+import io
 import tensorflow as tf
 
 # ===============================

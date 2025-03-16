@@ -15,7 +15,7 @@ class CancerClassifier:
         self.model = create_model()
 
         # Cargar solo los pesos
-        self.model.load_weights(self.model)
+        self.model.load_weights(model_path)
 
         # Compilar el modelo
         optimizer = tf.keras.optimizers.Adam(learning_rate=0.0001)
@@ -24,7 +24,7 @@ class CancerClassifier:
                     metrics=['accuracy'])
 
 
-    def preprocess_image(self, image_base64: str):
+    def preprocess_image_model(self, image_base64: str):
         """
         Preprocesa una imagen para hacerla compatible con el modelo.
 

@@ -19,14 +19,14 @@ import cv2
 
 
 
-from app.models.cancer_classifier import CancerClassifier  # Importa la clase del modelo
+from models.cancer_classifier import CancerClassifier  # Importa la clase del modelo
 from models.images import ImageRequest
 from utils.imagenes import decode_base64_image, make_gradcam_heatmap, overlay_heatmap
 
 
 
 # Inicializa el clasificador
-classifier = CancerClassifier("cancer_model.h5")
+classifier = CancerClassifier("densenet_cancer_model_20250313_011421.h5")
 
 # Inicializa API
 app = FastAPI()
@@ -49,14 +49,14 @@ async def predict(image_request: ImageRequest):
     try:
         image = decode_base64_image(image_request.image_base64)
         # Procesar imagen
-        imagen_procesada = classifier.preprocess_image(image_request.image_base64)
+        imagen_procesada = classifier.preprocess_image_model(image_request.image_base64)
         
         # Hacer la predicción
-        confianza, etiqueta = CancerClassifier.predict(imagen_procesada)
+        confianza, etiqueta = classifier.predict(imagen_procesada)
 
         # Aplicar Grad-CAM
         last_conv_layer_name = "conv5_block16_concat"  
-        heatmap = make_gradcam_heatmap(imagen_procesada, CancerClassifier, last_conv_layer_name)
+        heatmap = make_gradcam_heatmap(imagen_procesada, classifier.model, last_conv_layer_name)
         gradcam_result = overlay_heatmap(image, heatmap)
 
         # Convertir imagen con Grad-CAM a Base64 para devolverla en la respuesta
@@ -65,7 +65,7 @@ async def predict(image_request: ImageRequest):
 
         return {
             "prediccion": etiqueta,
-            "confianza": f"{confianza:.4f}",
+            "confianza": f"{confianza:.5f}",
             "imagen_gradcam": gradcam_base64
         }
 
