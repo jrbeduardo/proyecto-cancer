@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("result").style.display = "none";
         document.getElementById("gradcam-container").style.display = "none"; // Ocultar Grad-CAM hasta recibir la respuesta
 
-        fetch("https://fd7e-35-198-239-245.ngrok-free.app/predict/", {
+        fetch("https://8a27-35-227-55-192.ngrok-free.app/predict/", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
