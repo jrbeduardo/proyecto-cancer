@@ -4,6 +4,7 @@ FROM python:3.11
 WORKDIR /app
 # Copia el contenido del directorio actual en el contenedor en /app
 COPY ./app /app
+RUN pip install --upgrade pip
 # Instala los paquetes necesarios especificados en requirements.txt
 RUN pip install -r requirements.txt
 # Ejecuta main.py cuando se inicie el contenedor
