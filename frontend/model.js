@@ -1,0 +1,68 @@
+document.addEventListener("DOMContentLoaded", function() {
+    let base64Image = "";
+
+    // Previsualizar la imagen seleccionada
+    document.getElementById("image-input").addEventListener("change", function() {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById("image-preview").src = e.target.result;
+                document.getElementById("image-preview").style.display = "block";
+                document.getElementById("predict-btn").style.display = "inline-block";
+                base64Image = e.target.result.split(',')[1]; // Eliminar el prefijo "data:image/jpeg;base64,"
+            };
+            reader.readAsDataURL(file); // Leer la imagen y convertirla a base64
+        }
+    });
+
+    // Enviar la imagen para la predicción
+    document.getElementById("predict-btn").addEventListener("click", function() {
+        // Mostrar el loader
+        document.getElementById("loader").style.display = "inline-block";
+        document.getElementById("result").style.display = "none";
+        document.getElementById("gradcam-container").style.display = "none"; // Ocultar Grad-CAM hasta recibir la respuesta
+
+        fetch("https://cff0-35-236-212-191.ngrok-free.app/predict/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                image_base64: base64Image  // 🔹 Clave correcta para FastAPI
+            })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Error en la respuesta de la API");
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Añadir un retraso de 2 segundos antes de mostrar los resultados
+            setTimeout(() => {
+                document.getElementById("prediction-result").textContent = `${data.prediccion} (Confianza: ${data.confianza})`;
+                document.getElementById("result").style.display = "block";
+
+                // Mostrar la imagen con Grad-CAM
+                if (data.imagen_gradcam) {
+                    document.getElementById("gradcam-image").src = `data:image/png;base64,${data.imagen_gradcam}`;
+                    document.getElementById("gradcam-container").style.display = "block";
+                }
+            }, 1000); // 2000 milisegundos = 2 segundos
+        })
+        .catch(error => {
+            // Añadir retraso de 2 segundos en caso de error
+            setTimeout(() => {
+                document.getElementById("prediction-result").textContent = `Error al realizar la predicción: ${error.message}`;
+                document.getElementById("result").style.display = "block";
+            }, 2000);
+        })
+        .finally(() => {
+            // Ocultar el loader después del retraso
+            setTimeout(() => {
+                document.getElementById("loader").style.display = "none";
+            }, 2000);
+        });
+    });
+});
