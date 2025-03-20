@@ -20,37 +20,58 @@ def decode_base64_image(base64_string):
 # ===============================
 # Función para preprocesar la imagen
 # ===============================
-def preprocess_image(image, target_size=(128, 128)):
+def preprocess_image(image, target_size=(299, 299)):
     img = cv2.resize(image, target_size)
     img = img.astype("float32") / 255.0  # Normalizar
     img = np.expand_dims(img, axis=0)  # Expandir dimensiones para batch
     return img
 
-# ===============================
 # Función para aplicar Grad-CAM
-# ===============================
-def make_gradcam_heatmap(img_array, model, last_conv_layer_name):
-    grad_model = tf.keras.models.Model(
-        [model.input],
-        [model.get_layer(last_conv_layer_name).output, model.output]
+
+def make_gradcam_heatmap(img_array, model):
+    # Obtener la capa base InceptionV3
+    base_model = None
+    for layer in model.layers:
+        if isinstance(layer, tf.keras.models.Model):
+            base_model = layer
+            break
+        
+    # Obtener la última capa convolucional
+    last_conv_layer = base_model.get_layer("mixed10")
+
+    # Modelo para obtener salida de capa convolucional
+    grad_model_conv = tf.keras.models.Model(
+        inputs = base_model.inputs,
+        outputs = last_conv_layer.output
     )
 
     with tf.GradientTape() as tape:
-        conv_outputs, predictions = grad_model(img_array)
-        pred_index = tf.argmax(predictions[0])
-        loss = predictions[:, pred_index]
+        # Obtener activación de última capa convolucional
+        conv_output = grad_model_conv(img_array)
+        tape.watch(conv_output)
 
-    grads = tape.gradient(loss, conv_outputs)
+        # Pasar por el resto del modelo
+        x = conv_output
+        for layer in model.layers:
+            if isinstance(layer, tf.keras.models.Model):
+                continue
+            x = layer(x)
+
+        preds = x
+        class_channel = preds[:, 0]  # Para clasificación binaria
+
+    # Calcular gradientes
+    grads = tape.gradient(class_channel, conv_output)
     pooled_grads = tf.reduce_mean(grads, axis=(0, 1, 2))
-    conv_outputs = conv_outputs[0].numpy()
 
-    for i in range(pooled_grads.shape[-1]):
-        conv_outputs[:, :, i] *= pooled_grads[i].numpy()
+    # Generar mapa de calor
+    heatmap = conv_output[0] @ pooled_grads[..., tf.newaxis]
+    heatmap = tf.squeeze(heatmap)
 
-    heatmap = np.mean(conv_outputs, axis=-1)
-    heatmap = np.maximum(heatmap, 0)
-    heatmap /= np.max(heatmap)
-    return heatmap
+    # Normalizar
+    heatmap = tf.maximum(heatmap, 0) / tf.math.reduce_max(heatmap)
+
+    return heatmap.numpy()
 
 def overlay_heatmap(img, heatmap, alpha=0.5):
     heatmap = cv2.resize(heatmap, (img.shape[1], img.shape[0]))

@@ -1,8 +1,9 @@
-import tensorflow as tf
+
 import numpy as np
 from tensorflow.keras.preprocessing.image import img_to_array
 from PIL import Image
-from utils.modelo_cancer import create_model
+
+from tensorflow.keras.models import load_model
 from utils.imagenes import decode_base64_image, preprocess_image
 
 class CancerClassifier:
@@ -12,16 +13,8 @@ class CancerClassifier:
 
         :param model_path: Ruta del archivo del modelo (.h5).
         """
-        self.model = create_model()
+        self.model = load_model(model_path)
 
-        # Cargar solo los pesos
-        self.model.load_weights(model_path)
-
-        # Compilar el modelo
-        optimizer = tf.keras.optimizers.Adam(learning_rate=0.0001)
-        self.model.compile(optimizer=optimizer,
-                    loss='sparse_categorical_crossentropy',
-                    metrics=['accuracy'])
 
 
     def preprocess_image_model(self, image_base64: str):
@@ -46,9 +39,9 @@ class CancerClassifier:
         :return: Diccionario con el resultado de la predicción.
         """
         # Hacer la predicción
-        y_pred_probs = self.model.predict(img_array)
-        clase_predicha = tf.argmax(y_pred_probs, axis=1).numpy()[0]  # Obtener la clase con mayor probabilidad
-        confianza = np.max(y_pred_probs)
-        etiqueta = "Maligno" if clase_predicha == 1 else "Benigno"
+        preds = self.model.predict(img_array, verbose=0)
+        pred_prob = float(preds[0][0])
+        pred_class = 1 if pred_prob > 0.5 else 0
+        etiqueta = 'Maligno' if pred_class == 1 else 'Benigno'
 
-        return confianza, etiqueta
+        return  pred_prob , etiqueta

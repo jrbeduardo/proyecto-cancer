@@ -3,7 +3,7 @@
 ![Cancer](../images/cancer-fondo.jpeg)
 
 
-## 📌 Descripción de los Notebooks
+##  Descripción de los Notebooks
 
 Este repositorio contiene dos notebooks clave que abordan el análisis del cáncer de mama desde diferentes perspectivas:
 
@@ -14,12 +14,11 @@ Este notebook se enfoca en el análisis estadístico del **cáncer de mama en M�
 
 El objetivo es comprender mejor el contexto del cáncer de mama en México, lo que facilita la identificación de patrones y posibles áreas de mejora en la detección y tratamiento.
 
-### 🧠 `breast_cancer_classification.ipynb`
+### 📝 `breast_cancer_jerb.ipynb`
 Este notebook está dedicado al desarrollo de modelos de **aprendizaje profundo para la clasificación de cáncer de mama** en imágenes histopatológicas. Se incluyen:
 - Preprocesamiento de datos y exploración del conjunto de datos **BreaKHis**.
 - Implementación de modelos de redes neuronales convolucionales (CNN).
-- Uso de **DenseNet121** con fusión de características intermedias.
-- Evaluación del desempeño del modelo con métricas como **AUC-ROC y precisión**.
+- Evaluación del desempeño del modelo.
 - Interpretabilidad de la clasificación mediante **Grad-CAM**.
 
 Este enfoque permite la automatización de la detección de cáncer de mama, ofreciendo una herramienta potencial para el diagnóstico asistido por computadora.

@@ -24,7 +24,7 @@ Esta API permite la clasificación de imágenes histopatológicas para detectar 
 ## Requisitos Previos
 - Docker instalado.
 - Git instalado.
-- Python 3.10 o superior (para desarrollo).
+- Python 3.11 o superior (para desarrollo).
 - Configuración básica del sistema operativo.
 
 ## Instalación
@@ -40,7 +40,7 @@ cd proyecto-cancer
 
 El archivo de modelo necesario para ejecutar la API es bastante pesado y no está incluido directamente en el repositorio. Puedes descargarlo desde el siguiente enlace:
 
-[Descargar modelo cancer_detection_model.h5](https://drive.google.com/file/d/1--dhPdZ8ePth-jcddGp8WXl3gGL0fqJV/view?usp=sharing)
+[Descargar modelo cancer_detection_model.h5](https://drive.google.com/file/d/1lZ4KvZYrHGOYapTSEFQ4GjMPmq7UNA3I/view?usp=sharing)
 
 Por favor, guarda el archivo en la ubicación indicada en la configuración del modelo (`/app/cancer_detection_model.h5` si usas Docker).
 

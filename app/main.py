@@ -26,7 +26,7 @@ from utils.imagenes import decode_base64_image, make_gradcam_heatmap, overlay_he
 
 
 # Inicializa el clasificador
-classifier = CancerClassifier("densenet_cancer_model_20250313_011421.h5")
+classifier = CancerClassifier("best_model_inception_iter1_20250319_164436.h5")
 
 # Inicializa API
 app = FastAPI()
@@ -54,9 +54,8 @@ async def predict(image_request: ImageRequest):
         # Hacer la predicción
         confianza, etiqueta = classifier.predict(imagen_procesada)
 
-        # Aplicar Grad-CAM
-        last_conv_layer_name = "conv5_block16_concat"  
-        heatmap = make_gradcam_heatmap(imagen_procesada, classifier.model, last_conv_layer_name)
+        # Aplicar Grad-CAM  
+        heatmap = make_gradcam_heatmap(imagen_procesada, classifier.model)
         gradcam_result = overlay_heatmap(image, heatmap)
 
         # Convertir imagen con Grad-CAM a Base64 para devolverla en la respuesta

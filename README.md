@@ -1,6 +1,6 @@
 #  Proyecto - Detección de Cancer de Mama
 
-[![Python Version](https://img.shields.io/badge/python-3.10-blue.svg)](https://www.python.org/downloads/release/python-3100/)
+[![Python Version](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/release/python-3100/)
 [![TensorFlow Version](https://img.shields.io/badge/TensorFlow-2.17-orange.svg)](https://www.tensorflow.org/)
 
 
@@ -29,7 +29,7 @@ El conjunto de datos **BreaKHis** consiste en imágenes histopatológicas de tej
 - **Benigno**: Tumores no invasivos, con crecimiento lento y sin riesgo de metástasis.
 - **Maligno**: Tumores cancerosos con capacidad de invadir otros tejidos y propagarse.
 
-### 📌 **Características del Dataset**
+### **Características del Dataset**
 - **Número de imágenes**: 7,909 imágenes en total.
 - **Clases**: 2 (Benigno y Maligno).
 - **Formatos**: PNG (700x460 píxeles, RGB).
@@ -39,14 +39,6 @@ El conjunto de datos **BreaKHis** consiste en imágenes histopatológicas de tej
 ![Ejemplo de imágenes histológicas](images/Grad-CAM.png)
 
 Este conjunto de datos permite entrenar redes neuronales para mejorar la precisión del diagnóstico automatizado de cáncer de mama.
-
-## Implementación del Modelo
-
-Se probaron dos enfoques principales:
-1. **Modelo CNN Convencional**: Red convolucional con múltiples capas para extracción de características.
-2. **Modelo basado en DenseNet121**: Uso de transferencia de aprendizaje y fusión de características intermedias para mejorar la precisión.
-
-Además, se empleó **validación cruzada** para evaluar la robustez de los modelos y se utilizó la técnica **Grad-CAM** para interpretar sus predicciones.
 
 ## Enlaces Relevantes
 
