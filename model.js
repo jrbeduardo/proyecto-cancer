@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("result").style.display = "none";
         document.getElementById("gradcam-container").style.display = "none"; // Ocultar Grad-CAM hasta recibir la respuesta
 
-        fetch("https://cff0-35-236-212-191.ngrok-free.app/predict/", {
+        fetch("https://gcp-api-cancer-619566813870.us-central1.run.app/predict/", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
