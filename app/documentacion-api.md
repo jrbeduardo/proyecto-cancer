@@ -19,6 +19,8 @@
 ## Introducción
 Esta API permite la clasificación de imágenes histopatológicas para detectar cáncer de mama. Utiliza modelos de aprendizaje profundo con CNN y Grad-CAM para ofrecer predicciones precisas y mapas de activación que resaltan las regiones más relevantes en la imagen analizada.
 
+[Ir a la documentación de la API](https://gcp-api-cancer-619566813870.us-central1.run.app/docs)
+
 ---
 
 ## Requisitos Previos
